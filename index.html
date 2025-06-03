@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+    input, button {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+        margin: 2px;
+    }
+    #caixa {
+        width: 160px;
+        margin-bottom: 10px;
+        font-size: 22px;
+        text-align: right;
+    }
+</style>
+</head>
+<body>
+    <input type="text" name="caixa" id="caixa" value="0"> 
+    <input type="button" name="multiplicar" id="multiplicar" onclick="calcular(this)" value="X">
+    <input type="button" name="adicionar" id="adicionar" onclick="calcular(this)" value="+">
+    <input type="button" name="subtrair" id="subtrair" onclick="calcular(this)" value="-">
+    <input type="button" name="dividir" id="dividir" onclick="calcular(this)" value="/">
+    <input type="button" name="zerar" onclick="zerar()" id="C" value="C">
+    <br>
+    <button name="igual" onclick="igual()" id="=" value="">=</button>
+    <br><br>
+    <input type="button" name="9" id="9" onclick="adicionarnumero(this)" value="9">
+    <input type="button" name="8" id="8" onclick="adicionarnumero(this)" value="8">
+    <input type="button" name="7" id="7" onclick="adicionarnumero(this)" value="7">
+    <br>
+    <input type="button" name="6" id="6" onclick="adicionarnumero(this)" value="6">
+    <input type="button" name="5" id="5" onclick="adicionarnumero(this)" value="5">
+    <input type="button" name="4" id="4" onclick="adicionarnumero(this)" value="4">
+    <br>
+    <input type="button" name="3" id="3" onclick="adicionarnumero(this)" value="3">
+    <input type="button" name="2" id="2" onclick="adicionarnumero(this)" value="2">
+    <input type="button" name="1" id="1" onclick="adicionarnumero(this)" value="1">
+    <br>
+    <input type="button" name="0" id="0" onclick="adicionarnumero(this)" value="0">
+
+    <script>
+        var op;
+        var valor;
+        function adicionarnumero(numero){
+            const caixa = document.getElementById("caixa")
+            if (caixa.value == 0){
+                caixa.value= numero.id
+            }else{
+                caixa.value+= numero.id
+            }
+            
+            
+
+        }
+
+
+
+
+        function igual (){
+        if (!op) {
+            alert("Selecione uma operação antes.");
+            return;
+        }
+            const valorcaixa = Number(document.getElementById("caixa").value);
+
+            switch (op) {
+                case "multiplicar":
+                calculo = valor*valorcaixa;
+                    break;
+                case "adicionar":
+                calculo = valor+valorcaixa;
+                    break;
+                case "subtrair":
+                calculo = valor-valorcaixa;
+                    break;
+                case "dividir":
+                calculo = valor/valorcaixa;  
+                    break;
+                default:
+                    break;
+            }
+            document.getElementById("caixa").value = calculo;
+            valor = calculo;
+            op = undefined;
+        }
+
+
+        function calcular(operação){
+             op = operação.id
+             const valorcaixa = document.getElementById("caixa").value
+             valor = Number(valorcaixa)
+             document.getElementById("caixa").value = 0;
+        }
+
+        function zerar(){
+            document.getElementById("caixa").value = 0;
+            valor = 0;
+            op = undefined;
+        }
+
+        
+    </script>
+
+</body>
+</html>
